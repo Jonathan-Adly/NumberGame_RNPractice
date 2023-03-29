@@ -24,6 +24,7 @@ export default function App() {
     return <AppLoading />;
   }
 
+  // when a user picks a number, set the user number
   function pickedNumberHandler(pickedNumber) {
     setUserNumber(pickedNumber);
     setGameIsOver(false);
@@ -38,15 +39,16 @@ export default function App() {
     setUserNumber(null);
     setGuessRounds(0);
   }
-
+  // start game screen by default
   let screen = <StartGameScreen onPickNumber={pickedNumberHandler} />;
 
+  // once a user number is picked, show the game screen and lisen for game over
   if (userNumber) {
     screen = (
       <GameScreen userNumber={userNumber} onGameOver={gameOverHandler} />
     );
   }
-
+  // once the game is over, show the game over screen
   if (gameIsOver && userNumber) {
     screen = (
       <GameOverScreen
